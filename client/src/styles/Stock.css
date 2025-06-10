@@ -1,0 +1,116 @@
+.sidebar {
+  background-color: #ab9ece;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 10px;
+}
+
+.logo {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.logo img {
+  width: 140px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.menu a {
+  display: block;
+  padding: 12px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  margin-bottom: 5px;
+  transition: background 0.3s;
+}
+
+.menu a:hover,
+.menu .activo {
+  background-color: #09008b86;
+  color: white;
+  border-radius: 5px;
+}
+
+.stock-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.stock-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.btn-agregar,
+.btn-proveedores {
+  background-color: #c9c7ee;
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-weight: bold;
+  border: none;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  display: flex;
+  align-items: left;
+  text-decoration: none;
+}
+
+.input-buscar {
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+  margin-left: 10px;
+  width: 500px;
+}
+
+.tabla-contenedor {
+  background: white;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+  margin-top: 110px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  text-align: left;
+}
+
+.icon-verde {
+  color: green;
+
+}
+
+.icon-editar {
+  margin-right: 25px;
+  cursor: pointer;
+}
+
+.icon-eliminar {
+  cursor: pointer;
+}
+
+.gestionusuarios input {
+  margin-left: -2px;
+  width: 223px;
+}
+
+.agregarproductos input {
+  
+}
