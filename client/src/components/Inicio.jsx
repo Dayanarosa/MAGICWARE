@@ -1,28 +1,12 @@
 import '../styles/Inicio.css';
-import { Link } from 'react-router-dom';
+import Sidebar from './sidebar';
 
 
 function Inicio() {
   return (
     <div className="app">
-      <div className="sidebar">
-        <div>
-          <div className="logo">
-            <img src="/images/MG_LOGO.png" alt="Logo de la empresa" />
-          </div>
-
-          <div className="menu">
-            <Link to="#">INICIO</Link>
-            <Link to="/stock">STOCK</Link>
-            <Link to="/informes">INFORMES</Link>
-            <Link to="/gestionusuarios">GESTIÓN USUARIOS</Link>
-            <Link to="/alertasinternas">ALERTAS INTERNAS</Link>
-            <Link to="/alertasinternas">ALERTAS INTERNAS</Link>
-          </div>
-        </div>
-      </div>
-
-      <div className="contenido">
+      <Sidebar />
+      <div className="contenido contenido-inicio">
         <div className="usuario-superior">
           <span className="rol">ADMINISTRADOR</span>
           <button className="cerrar-sesion">Cerrar sesión</button>
@@ -30,7 +14,7 @@ function Inicio() {
 
         <div className="texto-central-wrapper">
           <div className="texto-central">
-            <h1>MAGICWARE</h1>
+            <h1>M A G I C W A R E</h1>
             <h4>Bienvenido(a) Isabell</h4>
           </div>
         </div>
@@ -55,10 +39,8 @@ function Inicio() {
           </a>
         </div>
       </div>
-    </div>
+      </div>
   );
 }
 
 export default Inicio;
-
-

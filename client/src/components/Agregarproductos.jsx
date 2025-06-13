@@ -1,14 +1,19 @@
-import React from 'react'
-import '../styles/Stock.css';
+import React from "react";
+import "../styles/Stock.css";
 import { Link } from "react-router-dom";
+import Sidebar from "./sidebar"
 
-function agregarproductos() {
+
+
+function AgregarProductos() {
   return (
-   <div className="contenedor-agregar-producto">
+    <div className="app">
+            <Sidebar />
       <div className="header">
-        <div>
+        <Link to="/stock" className="volver">&#8592;</Link>
         <h2>AGREGAR PRODUCTOS</h2>
       </div>  
+
       <table className="tabla-producto">
         <thead>
           <tr>
@@ -21,12 +26,21 @@ function agregarproductos() {
             <th>Acciones</th>
           </tr>
         </thead>
-         
+        <tbody>
+          <tr>
+            <td><input type="text" placeholder="código" /></td>
+            <td><input type="text" placeholder="nombre" /></td>
+            <td><input type="text" placeholder="categoría" /></td>
+            <td><input type="number" placeholder="cantidad" /></td>
+            <td><input type="text" placeholder="ubicación" /></td>
+            <td><input type="text" placeholder="Proveedor" /></td>
+            <td className="acciones">
+            </td>
+          </tr>
+        </tbody>
       </table>
     </div>
-    </div>
-      )
- 
+  );
 }
 
-export default agregarproductos
+export default AgregarProductos;

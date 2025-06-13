@@ -1,12 +1,15 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
+import "./index.css"
 import Inicio from './components/Inicio';
 import Stock from './components/Stock';
 import Gestionusuarios from './components/Gestionusuarios';
 import Informes from './components/Informes';
-import Alertasinternas from './components/Alertasinternas';
+import Notificaciones from './components/Notificaciones';
 import Agregarproductos from './components/Agregarproductos';
+import Registrarusuario from './components/Registrarusuario';
+
 
 
 
@@ -18,10 +21,9 @@ function App() {
         <Route path="/stock" element={<Stock />} />
         <Route path="/gestionusuarios" element={<Gestionusuarios />} />
         <Route path="/informes" element={<Informes />} />
-        <Route path="/alertasinternas" element={<Alertasinternas />} />
+        <Route path="/notificaciones" element={<Notificaciones />} />
         <Route path="/agregarproductos" element={<Agregarproductos />} />
-
-
+        <Route path="/registrarusuario" element={<Registrarusuario />} />
       </Routes>
     </Router>
   );

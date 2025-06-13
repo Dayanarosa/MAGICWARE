@@ -1,29 +1,18 @@
-.sidebar {
-  background-color: #ab9ece;
-  min-width: 200px;
-  width: 15%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100vh;
-  position: sticky;
-  top: 0;
-}
 
-.logo {
+
+.gestionusuarios-logo {
   text-align: center;
   margin-bottom: 20px;
 }
 
-.logo img {
+.gestionusuarios-logo img {
   width: 140px;
-    height: auto;
-
+  height: auto;
   display: block;
   margin: 0 auto;
 }
 
-.menu a {
+.gestionusuarios-menu a {
   display: block;
   padding: 12px;
   text-decoration: none;
@@ -33,28 +22,26 @@
   transition: background 0.3s;
 }
 
-
-.menu a:hover,
-.menu .activo {
+.gestionusuarios-menu a:hover,
+.gestionusuarios-menu .activo {
   background-color: #09008b86;
   color: white;
   border-radius: 5px;
 }
 
-.stock-container {
+.gestionusuarios-stock {
   padding: 20px;
   font-family: Arial, sans-serif;
 }
 
-.stock-header {
+.gestionusuarios-header {
   display: flex;
   align-items: center;
   gap: 15px;
   margin-bottom: 20px;
 }
 
-.btn-agregar,
-.btn-proveedores {
+.gestionusuarios-btn-agregar {
   background-color: #c9c7ee;
   padding: 8px 16px;
   border-radius: 12px;
@@ -67,7 +54,7 @@
   text-decoration: none;
 }
 
-.input-buscar {
+.gestionusuarios-buscar {
   padding: 8px 12px;
   border-radius: 20px;
   border: 1px solid #ccc;
@@ -76,7 +63,7 @@
   width: 500px;
 }
 
-.tabla-contenedor {
+.gestionusuarios-tabla {
   background: white;
   border-radius: 8px;
   padding: 10px;
@@ -97,23 +84,40 @@ td {
   text-align: left;
 }
 
-.icon-verde {
-  color: green;
-
-}
-
-.icon-editar {
+.gestionusuarios-editar {
   margin-right: 25px;
   cursor: pointer;
 }
 
-.icon-eliminar {
+.gestionusuarios-eliminar {
   cursor: pointer;
 }
 
-.gestionusuarios input {
-  margin-left: -2px;
-  width: 223px;
+.gestionusuarios-app {
+  display: flex;
 }
 
+.gestionusuarios-contenido {
+  flex-grow: 1;
+  padding: 20px;
+}
 
+.gestionusuarios-superior {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.gestionusuarios-rol {
+  font-weight: bold;
+}
+
+.gestionusuarios-cerrar-sesion {
+  padding: 6px 12px;
+  border-radius: 8px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
