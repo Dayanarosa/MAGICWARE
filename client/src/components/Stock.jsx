@@ -1,5 +1,8 @@
 import React from 'react';
 import '../styles/Stock.css';
+
+import '../styles/Inicio.css';
+
 import { Link } from "react-router-dom";
 import Sidebar from './sidebar';
 
