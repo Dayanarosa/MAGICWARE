@@ -1,27 +1,12 @@
 import React from 'react';
 import '../styles/GestionUsuarios.css';
 import { Link } from "react-router-dom";
-import Sidebar from "./sidebar"
+import Sidebar from "./sidebar";
 
 const GestionUsuarios = () => {
   return (
     <div className="gestionusuarios-app">
       <Sidebar />
-      <div className="gestionusuarios-sidebar">
-        <div>
-          <div className="gestionusuarios-logo">
-            <img src="/images/MG_LOGO.png" alt="Logo de la empresa" />
-          </div>
-
-          <div className="gestionusuarios-menu">
-            <Link to="/">INICIO</Link>
-            <Link to="/stock">STOCK</Link>
-            <Link to="/informes">INFORMES</Link>
-            <Link to="#">GESTIÓN USUARIOS</Link>
-            <Link to="/alertasinternas">NOTIFICACIONES</Link>
-          </div>
-        </div>
-      </div>
 
       <div className="gestionusuarios-contenido">
         <div className="gestionusuarios-superior">
@@ -29,8 +14,8 @@ const GestionUsuarios = () => {
           <button className="gestionusuarios-cerrar-sesion">Cerrar sesión</button>
         </div>
 
-        <div className='gestionusuarios-main'>
-          <h1>GESTION USUARIOS</h1>
+        <div className="gestionusuarios-main">
+          <h1>GESTIÓN USUARIOS</h1>
           <div className="gestionusuarios-central">
             <div className="gestionusuarios-stock">
               <div className="gestionusuarios-header">
@@ -69,7 +54,7 @@ const GestionUsuarios = () => {
                         <span className="gestionusuarios-eliminar">🗑️</span>
                       </td>
                     </tr>
-                    {/* Repite más filas según lo necesario */}
+                    {}
                   </tbody>
                 </table>
               </div>
@@ -81,5 +66,4 @@ const GestionUsuarios = () => {
   );
 };
 
-export default GestionUsuarios
-
+export default GestionUsuarios;

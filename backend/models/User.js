@@ -1,5 +1,5 @@
  //modelo User
- import bcrypt from 'bcryptjs';
+import bcrypt from 'bcryptjs';
 import db from '../config/db.js';
 
 //register
@@ -16,11 +16,11 @@ export const createUser = async (username, password, role) => {
  
 
 //login
-export const findUserByUsername = (username) => {
+export const findUserByUsername = (username) => { 
     return new Promise((resolve, reject) => {
         db.query('SELECT * FROM users WHERE username = ?', [username], (err, results) => {
             if (err)  reject(err)
-            resolve(results[0]); 
+            resolve(results[0]);
             
         });
     });

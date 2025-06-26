@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import "./index.css";
+import "./index.css"
 import Inicio from './components/Inicio';
 import Stock from './components/Stock';
 import Gestionusuarios from './components/Gestionusuarios';
@@ -9,6 +9,9 @@ import Informes from './components/Informes';
 import Notificaciones from './components/Notificaciones';
 import Agregarproductos from './components/Agregarproductos';
 import Registrarusuario from './components/Registrarusuario';
+
+
+
 
 function App() {
   return (

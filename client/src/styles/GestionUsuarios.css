@@ -1,37 +1,54 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
 
+.gestionusuarios-app {
+  display: flex;
+  width: 100%;
+}
 
-.gestionusuarios-logo {
-  text-align: center;
+.gestionusuarios-contenido {
+    
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.gestionusuarios-superior {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 20px;
 }
 
-.gestionusuarios-logo img {
-  width: 140px;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
-
-.gestionusuarios-menu a {
-  display: block;
-  padding: 12px;
-  text-decoration: none;
-  color: #fff;
+.gestionusuarios-rol {
   font-weight: bold;
-  margin-bottom: 5px;
-  transition: background 0.3s;
 }
 
-.gestionusuarios-menu a:hover,
-.gestionusuarios-menu .activo {
-  background-color: #09008b86;
+.gestionusuarios-cerrar-sesion {
+  padding: 6px 12px;
+  border-radius: 8px;
+  background-color: #f44336;
   color: white;
-  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.gestionusuarios-main {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  max-width: 1200px;
+  margin: 0 auto; /* CENTRAR */
+}
+
+.gestionusuarios-central {
+  padding: 0;
 }
 
 .gestionusuarios-stock {
   padding: 20px;
-  font-family: Arial, sans-serif;
 }
 
 .gestionusuarios-header {
@@ -50,7 +67,7 @@
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   display: flex;
-  align-items: left;
+  align-items: center;
   text-decoration: none;
 }
 
@@ -90,34 +107,5 @@ td {
 }
 
 .gestionusuarios-eliminar {
-  cursor: pointer;
-}
-
-.gestionusuarios-app {
-  display: flex;
-}
-
-.gestionusuarios-contenido {
-  flex-grow: 1;
-  padding: 20px;
-}
-
-.gestionusuarios-superior {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.gestionusuarios-rol {
-  font-weight: bold;
-}
-
-.gestionusuarios-cerrar-sesion {
-  padding: 6px 12px;
-  border-radius: 8px;
-  background-color: #f44336;
-  color: white;
-  border: none;
   cursor: pointer;
 }
