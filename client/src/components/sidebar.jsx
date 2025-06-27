@@ -11,7 +11,7 @@ const sidebar = () => {
           </div>
 
           <div className="menu">
-            <Link to="/">INICIO</Link>
+            <Link to="/inicio">INICIO</Link>
             <Link to="/stock">STOCK</Link>
             <Link to="/informes">INFORMES</Link>
             <Link to="/gestionusuarios">GESTIÓN USUARIOS</Link>

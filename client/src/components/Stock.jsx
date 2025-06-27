@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/Stock.css';
+import '../styles/styles.css';
 import { Link } from "react-router-dom";
 import Sidebar from './sidebar';
 

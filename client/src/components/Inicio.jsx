@@ -1,4 +1,4 @@
-import '../styles/Inicio.css';
+import '../styles/styles.css';
 import Sidebar from './sidebar';
 
 

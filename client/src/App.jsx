@@ -9,6 +9,8 @@ import Informes from './components/Informes';
 import Notificaciones from './components/Notificaciones';
 import Agregarproductos from './components/Agregarproductos';
 import Registrarusuario from './components/Registrarusuario';
+import Login from './components/Login';
+
 
 
 
@@ -17,13 +19,14 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Inicio />} />
+        <Route path="/" element={<Login />} />
         <Route path="/stock" element={<Stock />} />
         <Route path="/gestionusuarios" element={<Gestionusuarios />} />
         <Route path="/informes" element={<Informes />} />
         <Route path="/notificaciones" element={<Notificaciones />} />
         <Route path="/agregarproductos" element={<Agregarproductos />} />
         <Route path="/registrarusuario" element={<Registrarusuario />} />
+        <Route path="/inicio" element={<Inicio />} />
       </Routes>
     </Router>
   );
