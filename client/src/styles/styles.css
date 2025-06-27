@@ -30,7 +30,7 @@
     justify-content: center;
   }
 
-  /* Usuario superior (Administrador y botón cerrar sesión) */
+                  /* Usuario superior (Administrador y botón cerrar sesión) */
   .usuario-superior {
     position: absolute;
     top: 20px;

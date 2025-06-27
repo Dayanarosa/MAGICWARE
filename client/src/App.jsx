@@ -1,35 +1,31 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-import "./index.css"
-import Inicio from './components/Inicio';
-import Stock from './components/Stock';
-import Gestionusuarios from './components/Gestionusuarios';
-import Informes from './components/Informes';
-import Notificaciones from './components/Notificaciones';
-import Agregarproductos from './components/Agregarproductos';
-import Registrarusuario from './components/Registrarusuario';
-import Login from './components/Login';
+import {Routes, Route} from 'react-router-dom';
+import Login from './Pages/Login';
+import Register from './Pages/Register';
+import ProtectedRoute from './components/ProtectedRoute';
+import Dashboard from './Pages/Dashboard';
+import AdminPanel from './Pages/Adminpanel';
 
 
 
-
-
-function App() {
+const App = () => {
   return (
-    <Router>
+    <>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/stock" element={<Stock />} />
-        <Route path="/gestionusuarios" element={<Gestionusuarios />} />
-        <Route path="/informes" element={<Informes />} />
-        <Route path="/notificaciones" element={<Notificaciones />} />
-        <Route path="/agregarproductos" element={<Agregarproductos />} />
-        <Route path="/registrarusuario" element={<Registrarusuario />} />
-        <Route path="/inicio" element={<Inicio />} />
+      <Route path="/" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/dashboard " element={
+        <ProtectedRoute>
+          <Dashboard />
+        </ProtectedRoute>
+      } />
+      <Route path="/admin" element={
+        <ProtectedRoute>
+          <AdminPanel />
+        </ProtectedRoute>
+      } />
       </Routes>
-    </Router>
-  );
+    </>
+  )
 }
 
-export default App;
+export default App

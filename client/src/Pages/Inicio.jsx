@@ -1,5 +1,5 @@
 import '../styles/styles.css';
-import Sidebar from './sidebar';
+import Sidebar from '../components/sidebar';
 
 
 function Inicio() {

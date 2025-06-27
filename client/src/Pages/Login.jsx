@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import '../styles/styles.css';
-import { Link } from "react-router-dom";
+import { AuthContext } from '../context/AuthContext';
 
 function Login() {
-  const [correo, setCorreo] = useState('');
-  const [clave, setClave] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const { login } = useContext(AuthContext);
 
   const manejarEnvio = (e) => {
     e.preventDefault();
-    alert(`Correo: ${correo} - Contraseña: ${clave}`);
+    login(username, password);
   };
 
   return (
@@ -19,18 +20,18 @@ function Login() {
           <h2>INICIO DE SESIÓN</h2>
 
           <input
-            type="email"
-            placeholder="correo electrónico"
-            value={correo}
-            onChange={(e) => setCorreo(e.target.value)}
+            type="text"
+            placeholder="Nombre de usuario"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             required
           />
 
           <input
             type="password"
-            placeholder="contraseña"
-            value={clave}
-            onChange={(e) => setClave(e.target.value)}
+            placeholder="Contraseña"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             required
           />
 

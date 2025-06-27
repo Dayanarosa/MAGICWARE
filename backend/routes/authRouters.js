@@ -1,50 +1,71 @@
 import express from "express";
 import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";  
-import { verifyToken } from "../middleware/authMiddleWare.js";
-    
-import { createUser, findUserByUsername, findUserById } from "../models/User.js";
+import bcrypt from "bcryptjs";
+import { verifyToken } from "../middleware/authMiddleware.js";
+import {
+  createUser,
+  findUserByNombre,
+  findUserById
+} from "../models/User.js";
 
 const router = express.Router();
 
-//register
+// REGISTRO
 router.post("/register", async (req, res) => {
-    const { username, password, role } = req.body;
-    try {
-         await createUser(username, password, role);
-        res.status(201).json({ message: "Usuario creado exitosamente" });
-    } catch (error) {
-        res.status(500).json({ error: "Error al crear el usuario" });
-    }
+  const { nombre, contraseña, rol } = req.body;
 
-})
+  if (!nombre || !contraseña || !rol) {
+    return res.status(400).json({ error: "Todos los campos son obligatorios" });
+  }
 
-//post /login
+  try {
+    await createUser(nombre, contraseña, rol);
+    res.status(201).json({ message: "Usuario creado exitosamente" });
+  } catch (error) {
+    console.error("Error en /register:", error);
+    res.status(500).json({ error: "Error al crear el usuario" });
+  }
+});
+
+// LOGIN
 router.post("/login", async (req, res) => {
-    const { username, password } = req.body;
-    try {
-        const user = await findUserByUsername(username);
-        if (!user || !(await bcrypt.compare(password, user.password))) {
-            return res.status(401).json({ error: "Credenciales inválidas" });
-        }
-        const token = jwt.sign({ id: user.Id, role: user.role }, process.env.SECRET_KEY, { expiresIn: "1h" });
-        res.json({token})
+  const { nombre, contraseña } = req.body;
 
-    } catch (error) {
-        res.status(500).json({ error: "Error al iniciar sesión" });
-    }
-})
+  if (!nombre || !contraseña) {
+    return res.status(400).json({ error: "Nombre y contraseña requeridos" });
+  }
 
-//get /me obtener la informacion del usuario autenticado
+  try {
+    const user = await findUserByNombre(nombre);
+    if (!user) return res.status(401).json({ error: "Usuario no encontrado" });
+
+    const isPasswordValid = await bcrypt.compare(contraseña, user.contraseña);
+    if (!isPasswordValid) return res.status(401).json({ error: "Contraseña incorrecta" });
+
+    const token = jwt.sign(
+      { id: user.id_usuario, rol: user.rol },
+      process.env.JWT_SECRET,
+      { expiresIn: "1h" }
+    );
+
+    res.json({ token });
+  } catch (error) {
+    console.error("Error en /login:", error);
+    res.status(500).json({ error: "Error al iniciar sesión" });
+  }
+});
+
+// ME
 router.get("/me", verifyToken, async (req, res) => {
-    try {
-        const user = await findUserById(req.user.id);
-        if (!user)  return res.status(404).json({ message: "Usuario no encontrado" });
-        
-        res.json(user);
-    } catch (error) {
-        res.status(500).json({ error: "Error al obtener la información del usuario" });
-    }
+  try {
+    const user = await findUserById(req.user.id);
+    if (!user) return res.status(404).json({ error: "Usuario no encontrado" });
+
+    res.json(user);
+  } catch (error) {
+    console.error("Error en /me:", error);
+    res.status(500).json({ error: "Error al obtener datos del usuario" });
+  }
 });
 
 export default router;

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const cerrarsesion = () => {
+const Dashboard = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const cerrarsesion = () => {
   )
 }
 
-export default cerrarsesion
+export default Dashboard

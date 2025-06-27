@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/GestionUsuarios.css';
 import { Link } from "react-router-dom";
-import Sidebar from "./sidebar";
+import Sidebar from "../components/sidebar";
 
 const GestionUsuarios = () => {
   return (
