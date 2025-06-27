@@ -3,13 +3,25 @@ import '../styles/styles.css';
 import { AuthContext } from '../context/AuthContext';
 
 function Login() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [nombre, setNombre] = useState('');
+  const [contraseña, setContraseña] = useState('');
+  const [error, setError] = useState('');
+  const [cargando, setCargando] = useState(false);
   const { login } = useContext(AuthContext);
 
-  const manejarEnvio = (e) => {
+  const manejarEnvio = async (e) => {
     e.preventDefault();
-    login(username, password);
+    setError('');
+    setCargando(true);
+
+    try {
+      await login(nombre, contraseña);
+      
+    } catch (err) {
+      setError('Credenciales inválidas o error en el servidor');
+    } finally {
+      setCargando(false);
+    }
   };
 
   return (
@@ -22,20 +34,24 @@ function Login() {
           <input
             type="text"
             placeholder="Nombre de usuario"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={nombre}
+            onChange={(e) => setNombre(e.target.value)}
             required
           />
 
           <input
             type="password"
             placeholder="Contraseña"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={contraseña}
+            onChange={(e) => setContraseña(e.target.value)}
             required
           />
 
-          <button type="submit">INGRESAR</button>
+          {error && <p className="error-text">{error}</p>}
+
+          <button type="submit" disabled={cargando}>
+            {cargando ? 'Ingresando...' : 'INGRESAR'}
+          </button>
         </form>
       </div>
 

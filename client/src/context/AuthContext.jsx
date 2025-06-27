@@ -8,42 +8,74 @@ const API_URL = 'http://localhost:5000/api/auth/';
 
 const AuthProvider = ({ children }) => {
   const [usuario, setUsuario] = useState(null);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      axios.get(`${API_URL}me`, {
+  
+ useEffect(() => {
+  let cancelado = false;
+  const token = localStorage.getItem('token');
+
+  if (token) {
+    axios
+      .get(`${API_URL}me`, {
         headers: { Authorization: `Bearer ${token}` }
       })
-      .then(response => setUsuario(response.data.usuario))
-      .catch(() => logout());
-    }
-  }, []);
+      .then(res => {
+        if (!cancelado) setUsuario(res.data);
+      })
+      .catch(() => {
+        if (!cancelado) logout();
+      })
+      .finally(() => {
+        if (!cancelado) setLoading(false);
+      });
+  } else {
+    setLoading(false);
+  }
+
+  return () => {
+    cancelado = true;
+  };
+}, []);
 
   const login = async (nombre, contraseña) => {
     try {
-      const response = await axios.post(`${API_URL}login`, { nombre, contraseña });
-      const token = response.data.token;
-      localStorage.setItem('token', token);
+      const { data } = await axios.post(`${API_URL}login`, { nombre, contraseña });
+      localStorage.setItem('token', data.token);
 
-      const userResponse = await axios.get(`${API_URL}me`, {
-        headers: { Authorization: `Bearer ${token}` }
+      const userRes = await axios.get(`${API_URL}me`, {
+        headers: { Authorization: `Bearer ${data.token}` }
       });
 
-      setUsuario(userResponse.data.usuario);
-      navigate(userResponse.data.usuario.rol === 'admin' ? '/admin' : '/dashboard');
+      setUsuario(userRes.data);
+
+      
+       switch (userRes.data.rol) {
+  case 'Administrador':
+    navigate('/inicio');
+    break;
+
+        case 'Supervisor':
+          navigate('/supervisor');
+          break;
+        case 'Empleado':
+          navigate('/empleado');
+          break;
+        default:
+          navigate('/dashboard');
+      }
     } catch (err) {
-      console.error("Error en login", err);
+      console.error('Error en login', err);
     }
   };
 
-  const register = async (nombre, contraseña, rol) => {
+  const register = async (nombre, correo, contraseña, rol) => {
     try {
-      await axios.post(`${API_URL}register`, { nombre, contraseña, rol });
+      await axios.post(`${API_URL}register`, { nombre, correo, contraseña, rol });
       navigate('/login');
     } catch (err) {
-      console.error("Error al registrar usuario", err);
+      console.error('Error al registrar usuario', err);
     }
   };
 
@@ -54,7 +86,7 @@ const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ usuario, login, register, logout }}>
+    <AuthContext.Provider value={{ usuario, loading, login, register, logout }}>
       {children}
     </AuthContext.Provider>
   );

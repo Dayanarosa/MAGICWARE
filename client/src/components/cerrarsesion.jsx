@@ -1,11 +1,15 @@
-import React from 'react'
+import React from "react";
+import { useAuth } from "../context/AuthContext";
 
-const cerrarsesion = () => {
+function Cerrarsesion() {
+  const { logout } = useAuth();
+
   return (
-    <div>
-      
-    </div>
-  )
+    <button onClick={logout}>
+      Cerrar Sesión
+    </button>
+  );
 }
 
-export default cerrarsesion
+export default Cerrarsesion;
+

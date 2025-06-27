@@ -12,17 +12,22 @@ const router = express.Router();
 
 // REGISTRO
 router.post("/register", async (req, res) => {
-  const { nombre, contraseña, rol } = req.body;
+  const { nombre, correo, contraseña, rol } = req.body;
 
-  if (!nombre || !contraseña || !rol) {
+  if (!nombre || !correo || !contraseña || !rol) {
     return res.status(400).json({ error: "Todos los campos son obligatorios" });
   }
 
   try {
-    await createUser(nombre, contraseña, rol);
-    res.status(201).json({ message: "Usuario creado exitosamente" });
+    // Asignar estado por defecto
+    const estado = "Activo";
+    const nuevoUsuario = await createUser(nombre, correo, contraseña, rol, estado);
+    res.status(201).json({ message: "Usuario creado exitosamente", id: nuevoUsuario.insertId });
   } catch (error) {
     console.error("Error en /register:", error);
+    if (error.code === 'ER_DUP_ENTRY') {
+      return res.status(400).json({ error: "El correo ya está registrado" });
+    }
     res.status(500).json({ error: "Error al crear el usuario" });
   }
 });
@@ -38,6 +43,7 @@ router.post("/login", async (req, res) => {
   try {
     const user = await findUserByNombre(nombre);
     if (!user) return res.status(401).json({ error: "Usuario no encontrado" });
+    if (user.estado !== "Activo") return res.status(403).json({ error: "Usuario inactivo" });
 
     const isPasswordValid = await bcrypt.compare(contraseña, user.contraseña);
     if (!isPasswordValid) return res.status(401).json({ error: "Contraseña incorrecta" });

@@ -1,10 +1,17 @@
-import { AuthContext } from "../context/AuthContext";
-
-import { TextField, Button, Container, Select, MenuItem } from '@mui/material';
 import React, { useState, useContext } from 'react';
+import { AuthContext } from "../context/AuthContext";
+import {
+  TextField,
+  Button,
+  Container,
+  Select,
+  MenuItem,
+  Box
+} from '@mui/material';
 
 const Register = () => {
   const [nombre, setNombre] = useState('');
+  const [correo, setCorreo] = useState('');
   const [contraseña, setContraseña] = useState('');
   const [rol, setRol] = useState('');
 
@@ -12,14 +19,14 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    register(nombre, contraseña, rol);
+    register(nombre, correo, contraseña, rol);
   };
 
   return (
-    <>
-      <Container>
-        <h2>Registro de Usuario</h2>
-        <form onSubmit={handleSubmit}>
+    <Container maxWidth="sm">
+      <h2>Registro de Usuario</h2>
+      <form onSubmit={handleSubmit}>
+        <Box mb={2}>
           <TextField
             label="Nombre"
             value={nombre}
@@ -27,6 +34,20 @@ const Register = () => {
             fullWidth
             required
           />
+        </Box>
+
+        <Box mb={2}>
+          <TextField
+            label="Correo electrónico"
+            type="email"
+            value={correo}
+            onChange={(e) => setCorreo(e.target.value)}
+            fullWidth
+            required
+          />
+        </Box>
+
+        <Box mb={2}>
           <TextField
             label="Contraseña"
             type="password"
@@ -35,6 +56,9 @@ const Register = () => {
             fullWidth
             required
           />
+        </Box>
+
+        <Box mb={2}>
           <Select
             value={rol}
             onChange={(e) => setRol(e.target.value)}
@@ -43,15 +67,17 @@ const Register = () => {
             displayEmpty
           >
             <MenuItem value="" disabled>Selecciona un rol</MenuItem>
-            <MenuItem value="admin">Administrador</MenuItem>
-            <MenuItem value="supervisor">Supervisor</MenuItem>
+            <MenuItem value="Administrador">Administrador</MenuItem>
+            <MenuItem value="Supervisor">Supervisor</MenuItem>
+            <MenuItem value="Empleado">Empleado</MenuItem>
           </Select>
-          <Button type="submit" variant="contained" color="primary">
-            Registrar
-          </Button>
-        </form>
-      </Container>
-    </>
+        </Box>
+
+        <Button type="submit" variant="contained" color="primary" fullWidth>
+          Registrar
+        </Button>
+      </form>
+    </Container>
   );
 };
 

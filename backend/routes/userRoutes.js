@@ -3,21 +3,19 @@ import { verifyToken, checkRole } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
-//get /admin 
-router.get('/admin', verifyToken, checkRole(['admin']), (req, res) => {
-    res.status(200).json ({ message: 'Bienvenido al área de administración' });
+// Área de administración
+router.get('/admin', verifyToken, checkRole(['Administrador']), (req, res) => {
+  res.status(200).json({ message: 'Bienvenido al área de administración' });
 });
 
-//get /supervisor
-router.get('/supervisor', verifyToken, checkRole(['supervisor']), (req, res) => {
-    res.status(200).json({ message: 'Bienvenido al área de supervisión' });
+// Área de supervisión
+router.get('/supervisor', verifyToken, checkRole(['Supervisor']), (req, res) => {
+  res.status(200).json({ message: 'Bienvenido al área de supervisión' });
 });
 
-//get /empleado
-/**router.get('/empleado', verifyToken, checkRole(['empleado']), (req, res) => {
-    res.status(200).json({ message: 'Bienvenido al área de empleados' });
-}); */
-
-
+// Área de empleados
+router.get('/empleado', verifyToken, checkRole(['Empleado']), (req, res) => {
+  res.status(200).json({ message: 'Bienvenido al área de empleados' });
+});
 
 export default router;
