@@ -430,3 +430,45 @@ td {
 }
 
 
+/** css movimientos */
+
+/* ==== Estilos para la página de MOVIMIENTOS ==== */
+
+.movimientos-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 40px 10px;
+}
+
+.movimientos-header h2 {
+  font-size: 24px;
+  color: #333;
+}
+
+.movimientos-fecha {
+  display: flex;
+  align-items: center;
+  background-color: #f0f0f0;
+  padding: 6px 14px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #555;
+}
+
+.movimientos-graficas {
+  display: flex;
+  justify-content: space-around;
+  gap: 30px;
+  padding: 10px 40px;
+  flex-wrap: wrap;
+}
+
+.movimientos-historico {
+  margin: 30px 40px 40px;
+}
+
+/** css de finanzas*/
+
+
