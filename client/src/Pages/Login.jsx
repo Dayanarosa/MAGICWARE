@@ -51,7 +51,9 @@ function Login() {
 
           <button type="submit" disabled={cargando}>
             {cargando ? 'Ingresando...' : 'INGRESAR'}
+          
           </button>
+          <a href='URL' > REGISTRARSE </a> 
         </form>
       </div>
 

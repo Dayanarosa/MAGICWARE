@@ -1,7 +1,9 @@
 import React from 'react';
 import '../styles/Stock.css';
 import { Link } from "react-router-dom";
-import Sidebar from '../components/sidebar';
+import { FaArrowLeft } from 'react-icons/fa';
+import Sidebar from '../components/sidebaradm';
+
 
 function Registrarusuario() {
   return (

@@ -1,64 +1,60 @@
-import { Routes, Route } from 'react-router-dom';
-import Login from './Pages/Login';
-import Register from './Pages/Register';
-import Dashboard from './Pages/Dashboard';
-import AdminPanel from './Pages/Adminpanel';
-import Inicio from './Pages/Inicio';
-import Stock from './Pages/Stock';
-import Gestionusuarios from './Pages/Gestionusuarios';
-import Informes from './Pages/Informes';
-import Notificaciones from './Pages/Notificaciones';
-import Agregarproductos from './Pages/Agregarproductos';
-import Registrarusuario from './Pages/Registrarusuario';
-
-
+import { useContext } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { AuthContext } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 
+// Páginas públicas
+import Login from './Pages/Login';
+import Register from './Pages/Register';
+
+// Páginas protegidas (por rol)
+import Dashboard from './Pages/Dashboard';               // Empleado
+import Inicio from './Pages/Inicio';                     // Supervisor
+import Stock from './Pages/Stock';                       // Administrador
+import Notificaciones from './Pages/Notificaciones';     // Administrador
+import Inicioadm from './Pages/Inicioadm';               // Administrador
+import Gestionusuarios from './Pages/Gestionusuarios';   // Administrador
+import Informes from './Pages/Informes';                 // Supervisor
+import Agregarproductos from './Pages/Agregarproductos'; // Administrador
+import Registrarusuario from './Pages/Registrarusuario'; // Administrador
+import Inventario from './Pages/Inventario';             // Administrador
+
 const App = () => {
+  const { usuario } = useContext(AuthContext);
+
+  const redireccionSegunRol = () => {
+    if (!usuario) return <Navigate to="/login" replace />;
+    if (usuario.rol === 'Administrador') return <Navigate to="/admin" replace />;
+    if (usuario.rol === 'Supervisor') return <Navigate to="/inicio" replace />;
+    if (usuario.rol === 'Empleado') return <Navigate to="/dashboard" replace />;
+    return <Navigate to="/login" replace />;
+  };
+
   return (
     <Routes>
-      
-      <Route path="/" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-     
-
-      {/* Protegidas */}
+      {/* Ruta raíz: redirige automáticamente según rol */}
       <Route
-        path="/dashboard"
+        path="/"
         element={
           <ProtectedRoute>
-            <Dashboard />
+            {redireccionSegunRol()}
           </ProtectedRoute>
         }
       />
 
+      {/* Rutas públicas */}
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+
+      {/* Rutas protegidas por rol */}
       <Route
         path="/admin"
         element={
           <ProtectedRoute role="Administrador">
-            <AdminPanel />
+            <Inicioadm />
           </ProtectedRoute>
         }
       />
-
-      <Route
-        path="/inicio"
-        element={
-          <ProtectedRoute>
-            <Inicio />
-          </ProtectedRoute>
-        }
-      />
-
-      <Route
-        path="/stock"
-        element={
-          <ProtectedRoute>
-            <Stock />
-          </ProtectedRoute>
-        }
-      />
-
       <Route
         path="/gestionusuarios"
         element={
@@ -67,7 +63,55 @@ const App = () => {
           </ProtectedRoute>
         }
       />
+      <Route
+        path="/agregarproductos"
+        element={
+          <ProtectedRoute role="Administrador">
+            <Agregarproductos />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/registrarusuario"
+        element={
+          <ProtectedRoute role="Administrador">
+            <Registrarusuario />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/inventario"
+        element={
+          <ProtectedRoute role="Administrador">
+            <Inventario />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/stock"
+        element={
+          <ProtectedRoute role="Administrador">
+            <Stock />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/notificaciones"
+        element={
+          <ProtectedRoute role="Administrador">
+            <Notificaciones />
+          </ProtectedRoute>
+        }
+      />
 
+      <Route
+        path="/inicio"
+        element={
+          <ProtectedRoute role="Supervisor">
+            <Inicio />
+          </ProtectedRoute>
+        }
+      />
       <Route
         path="/informes"
         element={
@@ -78,31 +122,16 @@ const App = () => {
       />
 
       <Route
-        path="/notificaciones"
+        path="/dashboard"
         element={
-          <ProtectedRoute>
-            <Notificaciones />
+          <ProtectedRoute role="Empleado">
+            <Dashboard />
           </ProtectedRoute>
         }
       />
 
-      <Route
-        path="/agregarproductos"
-        element={
-          <ProtectedRoute role="Administrador">
-            <Agregarproductos />
-          </ProtectedRoute>
-        }
-      />
-
-      <Route
-        path="/registrarusuario"
-        element={
-          <ProtectedRoute role="Administrador">
-            <Registrarusuario />
-          </ProtectedRoute>
-        }
-      />
+      {/* Fallback: redirige siempre a la raíz */}
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 };

@@ -118,4 +118,80 @@ td {
 
 /**css registro de usuarios*/
 
+/* Estilos generales del contenedor principal */
+.main-container {
+  display: flex;
+}
+
+/* Contenido principal (a la derecha del sidebar) */
+.content {
+  flex: 1;
+  padding: 40px;
+  background-color: #f4f4f4;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Enlace para volver */
+.back-link {
+  display: inline-block;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #6a5acd;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+/* Formulario centrado */
+.form-container {
+  background: white;
+  padding: 40px;
+  max-width: 500px;
+  margin: 50px auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+  margin-bottom: 30px;
+  text-align: center;
+  color: #4b0082;
+}
+
+/* Campos de entrada */
+.input-field {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.05);
+}
+
+/* Dropdown de rol */
+.role-dropdown {
+  position: relative;
+}
+
+.role-button {
+  width: 100%;
+  padding: 12px 15px;
+  background-color: #ab9ece;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.arrow {
+  float: right;
+}
+
+
 
