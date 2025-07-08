@@ -18,6 +18,9 @@ import Informes from './Pages/Informes';                 // Supervisor
 import Agregarproductos from './Pages/Agregarproductos'; // Administrador
 import Registrarusuario from './Pages/Registrarusuario'; // Administrador
 import Inventario from './Pages/Inventario';             // Administrador
+import Movimientos from './Pages/Movimientos';           // Administrador
+
+
 
 const App = () => {
   const { usuario } = useContext(AuthContext);
@@ -129,6 +132,16 @@ const App = () => {
           </ProtectedRoute>
         }
       />
+      <Route
+        path="/movimientos"
+        element={
+          <ProtectedRoute role="Administrador">
+            <Inventario />
+          </ProtectedRoute>
+        }
+      />
+
+      
 
       {/* Fallback: redirige siempre a la raíz */}
       <Route path="*" element={<Navigate to="/" replace />} />
