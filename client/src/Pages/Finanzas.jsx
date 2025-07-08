@@ -1,6 +1,22 @@
 import React from 'react';
-import { FaArrowLeft, FaSearch, FaCalendarAlt } from 'react-icons/fa';
-import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import {
+  FaArrowLeft,
+  FaSearch,
+  FaCalendarAlt
+} from 'react-icons/fa';
+import {
+  PieChart,
+  Pie,
+  Cell,
+  ResponsiveContainer,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend
+} from 'recharts';
 import Sidebaradm from '../components/sidebaradm';
 import '../styles/styles.css';
 
@@ -26,36 +42,36 @@ function Finanzas() {
   return (
     <div className="app">
       <Sidebaradm />
-      <div className="content p-4">
-        <div className="flex justify-between items-center mb-4">
+      <div className="content">
+        <div className="finanzas-header">
           <div className="flex items-center gap-2">
             <FaArrowLeft />
-            <h1 className="text-2xl font-bold">FINANZAS</h1>
+            <h1>FINANZAS</h1>
           </div>
-          <div className="flex items-center gap-2 bg-gray-200 px-3 py-1 rounded">
+          <div className="finanzas-fecha">
             <span>05 Marzo 2025</span>
             <FaCalendarAlt />
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-4 mb-6">
-          <div className="shadow-md p-4 bg-white rounded">
-            <h3 className="text-sm text-gray-500">INGRESOS GENERADOS</h3>
-            <p className="text-2xl font-semibold">$3.000 USD</p>
+        <div className="finanzas-grid">
+          <div className="finanzas-card">
+            <h3>INGRESOS GENERADOS</h3>
+            <p>$3.000 USD</p>
           </div>
 
-          <div className="shadow-md p-4 bg-white rounded">
-            <h3 className="text-sm text-gray-500">GANANCIA POR PRODUCTO</h3>
-            <div className="flex items-center gap-2 mt-2">
-              <input type="text" placeholder="Buscar" className="border px-2 py-1 text-sm rounded w-full" />
+          <div className="finanzas-card">
+            <h3>GANANCIA POR PRODUCTO</h3>
+            <div className="search-wrapper">
+              <input type="text" placeholder="Buscar" />
               <FaSearch />
             </div>
-            <p className="mt-2 text-blue-700 underline cursor-pointer">Producto</p>
-            <p className="text-xl font-semibold">$500 USD</p>
+            <p className="producto-link">Producto</p>
+            <p>$500 USD</p>
           </div>
 
-          <div className="shadow-md p-4 bg-white rounded text-center">
-            <h3 className="text-sm text-gray-500 mb-2">PRODUCTOS MÁS RENTABLES</h3>
+          <div className="finanzas-card finanzas-pie">
+            <h3>PRODUCTOS MÁS RENTABLES</h3>
             <ResponsiveContainer width="100%" height={120}>
               <PieChart>
                 <Pie data={dataPie} dataKey="value" nameKey="name" outerRadius={50}>
@@ -68,8 +84,8 @@ function Finanzas() {
           </div>
         </div>
 
-        <div className="shadow-md p-4 bg-white rounded">
-          <h3 className="text-center font-semibold mb-2">GASTOS Y COSTOS DE INVENTARIOS</h3>
+        <div className="finanzas-bar">
+          <h3>GASTOS Y COSTOS DE INVENTARIOS</h3>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={dataBar}>
               <CartesianGrid strokeDasharray="3 3" />

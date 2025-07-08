@@ -193,5 +193,96 @@ td {
   float: right;
 }
 
+/** css de informes*/
+
+/* ===== Estilos para INFORMES ===== */
+.btn-opcion-informe {
+  background-color: #c9c7ee;
+  color: #000;
+  font-weight: bold;
+  padding: 12px;
+  border-radius: 12px;
+  text-align: left;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-opcion-informe:hover {
+  background-color: #b6b4e0;
+}
+
+.input-fecha {
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+  color: #222;
+}
+
+.input-fecha label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #222;
+  font-size: 16px;
+}
+
+.input-icono {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding: 8px 10px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+  border: 1px solid #ddd;
+  min-width: 140px;
+  justify-content: space-between;
+}
+
+.input-icono input {
+  border: none;
+  outline: none;
+  font-size: 14px;
+  background: transparent;
+  width: 90px;
+  text-align: left;
+}
+
+.input-icono svg {
+  font-size: 16px;
+  color: #222;
+}
+
+
+.btn-generar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: white;
+  border: none;
+  padding: 10px 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+
+.btn-generar:hover {
+  background-color: #f0f0f0;
+}
+
+.reporte-preview {
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  min-height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #999;
+  font-size: 14px;
+  border-radius: 8px;
+  background-color: #fff;
+}
 
 

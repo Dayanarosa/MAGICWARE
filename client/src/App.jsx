@@ -20,6 +20,8 @@ import Registrarusuario from './Pages/Registrarusuario'; // Administrador
 import Inventario from './Pages/Inventario';             // Administrador
 import Movimientos from './Pages/Movimientos';           // Administrador
 import Finanzas from './Pages/Finanzas';
+import Tendencias from './Pages/Tendencias';
+
 
 
 
@@ -119,7 +121,7 @@ const App = () => {
       <Route
         path="/informes"
         element={
-          <ProtectedRoute role="Supervisor">
+          <ProtectedRoute role="Administrador">
             <Informes />
           </ProtectedRoute>
         }
@@ -136,6 +138,8 @@ const App = () => {
       
       <Route path="/movimientos" element={<Movimientos />} />
       <Route path="/finanzas" element={<Finanzas />} />
+      <Route path="/tendencias" element={<Tendencias />} />
+
 
 
 
