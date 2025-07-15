@@ -16,6 +16,8 @@ const sidebaradm = () => {
             <Link to="/informes">INFORMES</Link>
             <Link to="/gestionusuarios">GESTIÓN USUARIOS</Link>
             <Link to="/notificaciones">NOTIFICACIONES</Link>
+            <Link to="/cerrarsesión">CERRAR SESIÓN</Link>
+
           </div>
         </div>
       </div>
