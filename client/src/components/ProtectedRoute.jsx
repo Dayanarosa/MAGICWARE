@@ -14,9 +14,18 @@ const ProtectedRoute = ({ children, role }) => {
     return <Navigate to="/login" replace />;
   }
 
-  if (role && usuario.rol !== role) {
-    console.warn(`🔐 Acceso denegado. Rol necesario: ${role}, actual: ${usuario.rol}`);
-    return <Navigate to="/unauthorized" replace />;
+  // ✅ Si el prop `role` es un array
+  if (Array.isArray(role)) {
+    if (!role.includes(usuario.rol)) {
+      console.warn(`🔐 Acceso denegado. Roles permitidos: ${role.join(', ')}, actual: ${usuario.rol}`);
+      return <Navigate to="/unauthorized" replace />;
+    }
+  } else {
+    // ✅ Si el prop `role` es un string
+    if (role && usuario.rol !== role) {
+      console.warn(`🔐 Acceso denegado. Rol necesario: ${role}, actual: ${usuario.rol}`);
+      return <Navigate to="/unauthorized" replace />;
+    }
   }
 
   return children;

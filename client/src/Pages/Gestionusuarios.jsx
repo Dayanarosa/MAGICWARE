@@ -1,17 +1,44 @@
-import React from 'react';
+import React, { useEffect } from 'react'; // Import useEffect
 import '../styles/GestionUsuarios.css';
 import { Link } from "react-router-dom";
 import Sidebar from "../components/sidebaradm";
+import { useAuth } from '../context/AuthContext'; // Import useAuth
 
 const GestionUsuarios = () => {
+  // Destructure usuario and logout from the authentication context
+  const { usuario, logout, loading } = useAuth();
+
+  // Show loading state if user data is not yet available
+  if (loading) {
+    return <p>Cargando información de usuario...</p>;
+  }
+
+  // If no user is logged in after loading, you might want to redirect
+  // This is a basic check; your AuthProvider already handles navigation on token issues.
+  if (!usuario) {
+    return <p>No hay usuario autenticado. Redirigiendo...</p>;
+  }
+
   return (
     <div className="gestionusuarios-app">
       <Sidebar />
 
       <div className="gestionusuarios-contenido">
         <div className="gestionusuarios-superior">
-          <span className="gestionusuarios-rol">ADMINISTRADOR</span>
-          <button className="gestionusuarios-cerrar-sesion">Cerrar sesión</button>
+          {/* Display user's role and name if available */}
+          <span className="gestionusuarios-rol">
+            {usuario.rol ? usuario.rol.toUpperCase() : 'ROL DESCONOCIDO'}
+          </span>
+          <span className="gestionusuarios-nombre">
+            {usuario.nombre ? ` (${usuario.nombre})` : ''}
+          </span>
+          {/* Attach the logout function to the button's onClick event */}
+          <button
+            className="gestionusuarios-cerrar-sesion"
+            onClick={logout} // Call the logout function when clicked
+          >
+            Cerrar sesión
+          </button>
         </div>
 
         <div className="gestionusuarios-main">
@@ -54,7 +81,7 @@ const GestionUsuarios = () => {
                         <span className="gestionusuarios-eliminar">🗑️</span>
                       </td>
                     </tr>
-                    {}
+                    {/* More user rows would go here, likely fetched from an API */}
                   </tbody>
                 </table>
               </div>

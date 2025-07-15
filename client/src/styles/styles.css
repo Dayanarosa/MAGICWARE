@@ -642,6 +642,46 @@ h4 {
   margin-bottom: 10px;
 }
 
+.error-text {
+  color: red;
+  font-size: 14px;
+  margin-top: -8px;
+  margin-bottom: 10px;
+}
+.input {
+  padding-right: 40px; /* espacio para el ojito */
+}
+
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.input-text {
+  width: 100%;
+  padding: 12px 40px 12px 12px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.password-wrapper {
+  margin-bottom: 10px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 1.2rem;
+  user-select: none;
+}
+
+
+
+
+
 
 
 

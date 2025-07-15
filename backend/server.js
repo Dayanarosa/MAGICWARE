@@ -2,36 +2,40 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import db from './config/db.js';
-import authRouters from './routes/authRouters.js';
-import userRoutes from './routes/userRoutes.js';
+
+import authRoutes from './routes/auth.router.js';
+import userRoutes from './routes/user.router.js';
+import rolesRoutes from './routes/roles.router.js'; 
 
 dotenv.config();
 
 const app = express();
 
-// ✅ CORS bien configurado
+// Middleware CORS
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: 'http://localhost:5173', // cambia según tu frontend
   credentials: true
 }));
 
+// Middleware para JSON
 app.use(express.json());
 
-// Rutas
-app.use('/api/auth', authRouters);
+// Rutas principales
+app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api', rolesRoutes);
 
-// Conexión a la BD
+// Conexión a la base de datos
 db.connect((err) => {
   if (err) {
-    console.error('Database connection failed:', err);
+    console.error('❌ Error al conectar a la base de datos:', err);
     return;
   }
-  console.log('Connected to the database');
+  console.log('✅ Conexión exitosa a la base de datos');
 });
 
-// Puerto
+// Puerto del servidor
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
 });

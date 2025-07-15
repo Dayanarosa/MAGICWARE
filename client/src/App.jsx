@@ -50,7 +50,7 @@ const App = () => {
 
       {/* Rutas públicas */}
       <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
+      {/*<Route path="/register" element={<Register />} />*/}
 
       {/* Rutas protegidas por rol */}
       <Route
@@ -61,14 +61,27 @@ const App = () => {
           </ProtectedRoute>
         }
       />
+     <Route
+  path="/gestionusuarios"
+  element={
+    <ProtectedRoute role={["Administrador", "Supervisor"]}>
+      <Gestionusuarios />
+    </ProtectedRoute>
+  }
+/>
+
+
+      
       <Route
-        path="/gestionusuarios"
+      
+        path="/register"
         element={
           <ProtectedRoute role="Administrador">
-            <Gestionusuarios />
+            <Register />
           </ProtectedRoute>
         }
       />
+
       <Route
         path="/agregarproductos"
         element={
